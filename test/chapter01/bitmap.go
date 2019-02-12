@@ -16,8 +16,9 @@ import (
 const N uint = 10000000
 
 func main() {
+	onestepmain()
 	//twostepmain()
-	unittest()
+	//unittest()
 }
 
 func twostepmain() {

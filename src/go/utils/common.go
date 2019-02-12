@@ -23,12 +23,18 @@ func Max(a int, b int) int {
 	return b
 }
 
+var hasSetSeed = false
+
 func BigRandSeed(seed int64) int {
 	rand.Seed(seed)
 	return rand.Int()
 }
 
 func BigRand() int {
+	if hasSetSeed {
+		return rand.Int()
+	}
+	hasSetSeed = true
 	return BigRandSeed(time.Now().UnixNano())
 }
 

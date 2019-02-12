@@ -6,14 +6,16 @@ import (
 )
 
 func GenSets(m int, n int) []int {
-	result := make([]int, 0, m)
+	result := make([]int, m)
 
 	S := mapset.NewSet()
 	for S.Cardinality() < m {
 		S.Add(utils.BigRand() % n)
 	}
+	j := 0
 	for val := range S.Iter() {
-		result = append(result, val.(int))
+		result[j] = val.(int)
+		j++
 	}
 	return result
 }

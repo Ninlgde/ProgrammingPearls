@@ -6,7 +6,7 @@ import (
 )
 
 func GenFloyd(m int, n int) []int {
-	result := make([]int, 0, m)
+	result := make([]int, m)
 
 	S := mapset.NewSet()
 
@@ -19,8 +19,10 @@ func GenFloyd(m int, n int) []int {
 		}
 	}
 
+	j := 0
 	for val := range S.Iter() {
-		result = append(result, val.(int))
+		result[j] = val.(int)
+		j++
 	}
 	return result
 }

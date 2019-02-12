@@ -12,3 +12,15 @@ func GenKnuth(m int, n int) []int {
 	}
 	return result
 }
+
+func GenKnuthFaster(m int, n int) []int {
+	result := make([]int, m)
+	max := m
+	for i := 0; i < n; i++ {
+		if (utils.BigRand() % (n - i)) < m {
+			result[max-m] = i
+			m--
+		}
+	}
+	return result
+}

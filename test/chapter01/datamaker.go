@@ -2,28 +2,29 @@ package main
 
 import (
 	"bufio"
+	"fmt"
+	"github.com/Ninlgde/ProgrammingPearls/src/go/sampling"
 	"math/rand"
 	"os"
 	"strconv"
 	"time"
 )
 
-const NN uint = 10000000
+const NN int = 10000000
 
 func main() {
 	var k int = 8000000
 	rand.Seed(time.Now().UnixNano())
 
-	a := make([]int32, NN)
-	for i := 0; i < int(NN); i++ {
-		a[i] = int32(i)
-	}
+	t1 := time.Now()
+	a := sampling.GenKnuth(k, NN)
+	elapsed := time.Since(t1)
+	fmt.Println("GenKnuth elapsed: ", elapsed, "result len: ", len(a))
 
-	for i := 0; i < k; i++ {
-		var idx int
-		idx = int(rand.Int31n(int32(int(NN)-i)) + int32(i))
-		a[i], a[idx] = a[idx], a[i]
-	}
+	t1 = time.Now()
+	a = sampling.GenKnuthFaster(k, NN)
+	elapsed = time.Since(t1)
+	fmt.Println("GenKnuthFaster elapsed: ", elapsed, "result len: ", len(a))
 
 	f, err := os.Create("data.dat")
 	check(err)
