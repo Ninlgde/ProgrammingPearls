@@ -33,8 +33,17 @@ func (set *intSetBST) Size() int {
 
 func (set *intSetBST) Report() []int {
 	result := make([]int, set.Size())
-	vn := 0
-	traverse(set, set.root, result, &vn)
+	ch1 := traverse(set, set.root)
+	i := 0
+	for {
+		val, ok := <-ch1
+		if ok {
+			result[i] = val
+			i++
+		} else {
+			break
+		}
+	}
 	return result
 }
 
@@ -66,12 +75,20 @@ func trinsert(set *intSetBST, p *treeNode, t int) *treeNode {
 	return p
 }
 
-func traverse(set *intSetBST, p *treeNode, v []int, vn *int) {
+func walk(set *intSetBST, p *treeNode, ch chan int) {
 	if p == niltreenode {
 		return
 	}
-	traverse(set, p.left, v, vn)
-	v[*vn] = p.val
-	*vn++
-	traverse(set, p.right, v, vn)
+	walk(set, p.left, ch)
+	ch <- p.val
+	walk(set, p.right, ch)
+}
+
+func traverse(set *intSetBST, p *treeNode) <-chan int {
+	ch := make(chan int)
+	go func() {
+		walk(set, p, ch)
+		close(ch)
+	}()
+	return ch
 }
