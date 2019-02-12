@@ -15,7 +15,7 @@ func newIntSetBitVec(maxelements int, maxval int) intSetBitVec {
 }
 
 func (set *intSetBitVec) IntSetImp(maxelements int, maxval int) {
-	set.bits = make([]int32, set.hi/bitmap.BITSPERWORD)
+	set.bits = make([]int32, set.hi/bitmap.BITSPERWORD+1)
 	for i := 0; i < maxval; i++ {
 		bitmap.Clr(set.bits, uint(i))
 	}

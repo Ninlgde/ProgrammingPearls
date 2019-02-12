@@ -6,21 +6,21 @@ type treeNode struct {
 	right *treeNode
 }
 
+var niltreenode = &treeNode{}
+
 type intSetBST struct {
-	n        int
-	root     *treeNode
-	sentinel *treeNode
+	n    int
+	root *treeNode
 }
 
 func newIntSetBST(maxelements int, maxval int) intSetBST {
-	set := intSetBST{0, nil, nil}
+	set := intSetBST{0, nil}
 	set.IntSetImp(maxelements, maxval)
 	return set
 }
 
 func (set *intSetBST) IntSetImp(maxelements int, maxval int) {
-	set.sentinel = &treeNode{maxval, nil, nil}
-	set.root = set.sentinel
+	set.root = niltreenode
 }
 
 func (set *intSetBST) Insert(t int) {
@@ -33,10 +33,9 @@ func (set *intSetBST) Size() int {
 
 func (set *intSetBST) Report() []int {
 	result := make([]int, set.Size())
-	var vn *int
-	*vn = 0
-	traverse(set, set.root, result, vn)
-	return nil
+	vn := 0
+	traverse(set, set.root, result, &vn)
+	return result
 }
 
 func (set *intSetBST) Has(t int) bool {
@@ -56,8 +55,8 @@ func (set *intSetBST) Remove(t int) {
 }
 
 func trinsert(set *intSetBST, p *treeNode, t int) *treeNode {
-	if p == set.sentinel {
-		p = &treeNode{t, nil, nil}
+	if p == niltreenode {
+		p = &treeNode{t, niltreenode, niltreenode}
 		set.n++
 	} else if t < p.val {
 		p.left = trinsert(set, p.left, t)
@@ -68,7 +67,7 @@ func trinsert(set *intSetBST, p *treeNode, t int) *treeNode {
 }
 
 func traverse(set *intSetBST, p *treeNode, v []int, vn *int) {
-	if p == set.sentinel {
+	if p == niltreenode {
 		return
 	}
 	traverse(set, p.left, v, vn)

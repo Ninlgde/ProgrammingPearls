@@ -18,8 +18,8 @@ func newIntSetList(maxelements int, maxval int) intSetList {
 }
 
 func (set *intSetList) IntSetImp(maxelements int, maxval int) {
-	set.head = &listNode{maxval, nil}
 	set.sentinel = &listNode{maxval, nil}
+	set.head = set.sentinel
 }
 
 func (set *intSetList) Insert(t int) {

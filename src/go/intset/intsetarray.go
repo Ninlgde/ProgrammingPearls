@@ -37,8 +37,8 @@ func (set *intSetArray) Size() int {
 
 func (set *intSetArray) Report() []int {
 	result := make([]int, set.Size())
-	for i := 1; i <= set.n; i++ {
-		result[i-1] = set.x[i]
+	for i := 0; i < set.n; i++ {
+		result[i] = set.x[i]
 	}
 	return result
 }
