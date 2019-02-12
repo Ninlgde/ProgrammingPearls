@@ -51,5 +51,9 @@ func (set *intSetBitVec) Has(t int) bool {
 }
 
 func (set *intSetBitVec) Remove(t int) {
+	if bitmap.Test(set.bits, uint(t)) == 0 {
+		return
+	}
 	bitmap.Clr(set.bits, uint(t))
+	set.n--
 }

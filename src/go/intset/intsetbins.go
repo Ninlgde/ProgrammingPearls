@@ -69,6 +69,8 @@ func (set *intSetBins) Remove(t int) {
 			} else {
 				pre.next = p.next
 			}
+			set.n--
+			break
 		}
 		pre = p
 	}

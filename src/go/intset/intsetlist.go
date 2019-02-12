@@ -55,6 +55,8 @@ func (set *intSetList) Remove(t int) {
 	for ; p != set.sentinel; p = p.next {
 		if p.val == t {
 			pre.next = p.next
+			set.n--
+			break
 		}
 		pre = p
 	}
