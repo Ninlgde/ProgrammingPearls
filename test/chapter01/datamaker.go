@@ -26,6 +26,16 @@ func main() {
 	elapsed = time.Since(t1)
 	fmt.Println("GenKnuthFaster elapsed: ", elapsed, "result len: ", len(a))
 
+	t1 = time.Now()
+	a = sampling.GenFloyd(k, NN)
+	elapsed = time.Since(t1)
+	fmt.Println("GenFloyd elapsed: ", elapsed, "result len: ", len(a))
+
+	t1 = time.Now()
+	a = sampling.GenFloydFaster(k, NN)
+	elapsed = time.Since(t1)
+	fmt.Println("GenFloydFaster elapsed: ", elapsed, "result len: ", len(a))
+
 	f, err := os.Create("data.dat")
 	check(err)
 

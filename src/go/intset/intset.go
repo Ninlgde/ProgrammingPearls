@@ -10,6 +10,11 @@ type IntSet interface {
 }
 
 func NewIntSet(maxelements int, maxval int) IntSet {
+	set := newIntSetSS(maxelements, maxval)
+	return &set
+}
+
+func NewIntSetSTL(maxelements int, maxval int) IntSet {
 	set := newIntSetSTL(maxelements, maxval)
 	return &set
 }
