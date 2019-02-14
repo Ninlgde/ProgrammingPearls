@@ -1,6 +1,9 @@
 package intset
 
-import "github.com/deckarep/golang-set"
+import (
+	"github.com/Ninlgde/ProgrammingPearls/src/go/sort"
+	"github.com/deckarep/golang-set"
+)
 
 type intSetSTL struct {
 	S mapset.Set
@@ -31,6 +34,7 @@ func (set *intSetSTL) Report() []int {
 		result[i] = val.(int)
 		i++
 	}
+	sort.QuickSort(result)
 	return result
 }
 

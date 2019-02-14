@@ -2,6 +2,7 @@ package intset
 
 import (
 	"github.com/Ninlgde/ProgrammingPearls/src/go/simpleset"
+	"github.com/Ninlgde/ProgrammingPearls/src/go/sort"
 )
 
 type intSetSimpleSet struct {
@@ -33,6 +34,7 @@ func (set *intSetSimpleSet) Report() []int {
 		result[i] = val.(int)
 		i++
 	}
+	sort.QuickSort(result)
 	return result
 }
 
