@@ -28,6 +28,7 @@ func main() {
 	fmt.Println(set.Has(5))
 
 	set.Remove(3)
+	set.Remove(5)
 	fmt.Println(set.Report())
 	fmt.Println(set.Size())
 

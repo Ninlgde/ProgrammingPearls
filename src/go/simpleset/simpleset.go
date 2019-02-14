@@ -11,18 +11,16 @@ type Set interface {
 }
 
 type mapSet struct {
-	n int
 	S map[interface{}]bool
 }
 
 func NewSet() Set {
-	return &mapSet{0, make(map[interface{}]bool)}
+	return &mapSet{make(map[interface{}]bool)}
 }
 
 func (set *mapSet) Add(e interface{}) {
 	if !set.S[e] {
 		set.S[e] = true
-		set.n++
 	}
 }
 
@@ -32,11 +30,10 @@ func (set *mapSet) Contains(e interface{}) bool {
 
 func (set *mapSet) Remove(e interface{}) {
 	delete(set.S, e)
-	set.n--
 }
 
 func (set *mapSet) Cardinality() int {
-	return set.n
+	return len(set.S)
 }
 
 func (set *mapSet) Iter() <-chan interface{} {
