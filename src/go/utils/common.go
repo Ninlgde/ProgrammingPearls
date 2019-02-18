@@ -16,6 +16,20 @@ func GCD(i int, j int) int {
 	return i
 }
 
+func GCD2(i int, j int) int {
+	if j > i {
+		i, j = j, i
+	}
+	for {
+		r := i % j
+		if r == 0 {
+			break
+		}
+		i, j = j, r
+	}
+	return j
+}
+
 func Max(a int, b int) int {
 	if a > b {
 		return a
