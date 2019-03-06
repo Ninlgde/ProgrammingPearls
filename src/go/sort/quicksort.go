@@ -75,7 +75,6 @@ func QSort4(x []int) []int {
 	}
 	l := 0
 	u := len(x) - 1
-	rand.Seed(time.Now().UnixNano())
 	r := rand.Int() % len(x)
 	x[r], x[l] = x[l], x[r]
 	t := x[l]
@@ -98,6 +97,7 @@ func QSort4(x []int) []int {
 }
 
 func QuickSort(x []int) []int {
+	rand.Seed(time.Now().UnixNano())
 	QSort4(x)
 	ISort3(x)
 	return x
