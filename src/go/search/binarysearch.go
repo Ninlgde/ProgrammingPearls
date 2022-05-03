@@ -9,7 +9,7 @@ func BinarySearch(a []int, target int) int {
 	end := len(a) - 1
 
 	for begin <= end {
-		mid := (begin + end) / 2
+		mid := begin + (end-begin)/2
 		if a[mid] > target {
 			end = mid - 1
 		} else if a[mid] < target {
@@ -26,7 +26,7 @@ func FastBinarySearch(a []int, target int) int {
 	end := len(a)
 
 	for begin+1 != end {
-		mid := (begin + end) / 2
+		mid := begin + (end-begin)/2
 		if a[mid] < target {
 			begin = mid
 		} else {
@@ -45,7 +45,7 @@ func FirstBinarySearch(a []int, target int) int {
 
 	first := -1
 	for begin <= end {
-		mid := (begin + end) / 2
+		mid := begin + (end-begin)/2
 		if a[mid] > target {
 			end = mid - 1
 		} else if a[mid] < target {
@@ -64,7 +64,7 @@ func RecursionBinarySearch(a []int, target int, begin int, end int) int {
 		return -1
 	}
 
-	mid := (begin + end) / 2
+	mid := begin + (end-begin)/2
 	if a[mid] > target {
 		return RecursionBinarySearch(a, target, begin, mid-1)
 	} else if a[mid] < target {
